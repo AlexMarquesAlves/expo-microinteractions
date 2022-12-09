@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    width: 100,
-    height: 100,
+    // width: 100, definido na animação
+    // height: 100, definido na animação
     borderRadius: 12,
     backgroundColor: "#8527e5",
   },

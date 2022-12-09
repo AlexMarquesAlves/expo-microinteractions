@@ -7,13 +7,13 @@ import Animated, {
 import { styles } from "./styles";
 
 export const Pinch = () => {
-  const rotation = useSharedValue(0);
-  const rotationGesture = Gesture.Rotation().onUpdate((event) => {
-    rotation.value = event.rotation;
+  const scale = useSharedValue(1);
+  const rotationGesture = Gesture.Pinch().onUpdate((event) => {
+    scale.value = event.scale;
   });
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotateZ: `${(rotation.value / Math.PI) * 180}deg` }],
+    transform: [{ scale: scale.value }],
   }));
 
   return (

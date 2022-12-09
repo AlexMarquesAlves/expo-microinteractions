@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    // width: 100,
-    // height: 100,
+    width: 200,
+    height: 200,
     borderRadius: 12,
     backgroundColor: "#8527e5",
   },

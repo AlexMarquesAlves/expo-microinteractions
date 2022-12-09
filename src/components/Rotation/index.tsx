@@ -3,32 +3,22 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
 } from "react-native-reanimated";
 import { styles } from "./styles";
 
 export const Rotation = () => {
-  const size = useSharedValue(100);
-
-  const longPressGesture = Gesture.LongPress()
-    .onTouchesDown(() => {
-      size.value = withTiming(size.value + 200, { duration: 500 });
-    })
-    .onEnd((e, success) => {
-      if (success) {
-        console.log(`Duração ${e.duration} ms.`);
-        size.value = withTiming(100, { duration: 500 });
-      }
-    });
+  const rotation = useSharedValue(0);
+  const rotationGesture = Gesture.Rotation().onUpdate((event) => {
+    rotation.value = event.rotation;
+  });
 
   const animatedStyle = useAnimatedStyle(() => ({
-    width: size.value,
-    height: size.value,
+    transform: [{ rotateZ: `${(rotation.value / Math.PI) * 180}deg` }],
   }));
 
   return (
     <View style={styles.container}>
-      <GestureDetector gesture={longPressGesture}>
+      <GestureDetector gesture={rotationGesture}>
         <Animated.View style={[styles.box, animatedStyle]} />
       </GestureDetector>
     </View>

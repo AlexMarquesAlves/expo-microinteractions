@@ -1,4 +1,5 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Fling } from "./src/components/Fling";
 import { LongPress } from "./src/components/LongPress";
 import { Pan } from "./src/components/Pan";
 import { Pinch } from "./src/components/Pinch";
@@ -13,6 +14,7 @@ export default function App() {
       <Rotation />
       <Pinch />
       <Pan />
+      <Fling />
     </GestureHandlerRootView>
   );
 }

@@ -7,13 +7,21 @@ import Animated, {
 import { styles } from "./styles";
 
 export const Pan = () => {
-  const scale = useSharedValue(1);
-  const rotationGesture = Gesture.Pinch().onUpdate((event) => {
-    scale.value = event.scale;
-  });
+  const position = useSharedValue(0);
+  const rotationGesture = Gesture.Pan()
+    .minPointers(2)
+    .onUpdate((event) => {
+      position.value = event.translationX;
+
+      if (event.translationY >= 0) {
+        console.log(`Indo para a direita`);
+      } else {
+        console.log(`Indo para a esquerda`);
+      }
+    });
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
+    transform: [{ translateX: position.value }],
   }));
 
   return (
